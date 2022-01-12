@@ -182,6 +182,12 @@ if(CV_GCC OR CV_CLANG)
     endif()
   endif()
 
+  foreach(flags CMAKE_CXX_FLAGS CMAKE_C_FLAGS CMAKE_CXX_FLAGS_RELEASE CMAKE_C_FLAGS_RELEASE CMAKE_CXX_FLAGS_DEBUG CMAKE_C_FLAGS_DEBUG
+                OPENCV_EXTRA_FLAGS_RELEASE OPENCV_EXTRA_FLAGS_DEBUG OPENCV_EXTRA_C_FLAGS OPENCV_EXTRA_CXX_FLAGS)
+    string(REPLACE "-ffunction-sections" "" ${flags} "${${flags}}")
+    string(REPLACE "-fdata-sections" "" ${flags} "${${flags}}")
+  endforeach()
+
   if(ENABLE_COVERAGE)
     set(OPENCV_EXTRA_C_FLAGS "${OPENCV_EXTRA_C_FLAGS} --coverage")
     set(OPENCV_EXTRA_CXX_FLAGS "${OPENCV_EXTRA_CXX_FLAGS} --coverage")

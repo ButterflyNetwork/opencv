@@ -14,6 +14,7 @@ FATAL: In-source builds are not allowed.
 ")
 endif()
 
+SET(CMAKE_INSTALL_NAME_TOOL install_name_tool)
 
 include(cmake/OpenCVMinDepVersions.cmake)
 

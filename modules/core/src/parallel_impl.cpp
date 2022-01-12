@@ -53,6 +53,8 @@ DECLARE_CV_PAUSE
 #   if !defined(__SSE__)
       static inline void cv_non_sse_mm_pause() { __asm__ __volatile__ ("rep; nop"); }
 #     define _mm_pause cv_non_sse_mm_pause
+#   else
+#     include <emmintrin.h>
 #   endif
 #   define CV_PAUSE(v) do { for (int __delay = (v); __delay > 0; --__delay) { _mm_pause(); } } while (0)
 # elif defined __GNUC__ && defined __aarch64__

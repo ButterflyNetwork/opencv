@@ -148,7 +148,7 @@ class Builder:
 
         if self.dynamic:
             buildcmd += [
-                "IPHONEOS_DEPLOYMENT_TARGET=8.0",
+                "IPHONEOS_DEPLOYMENT_TARGET=9.0",
                 "ONLY_ACTIVE_ARCH=NO",
             ]
 
@@ -161,7 +161,7 @@ class Builder:
         else:
             arch = ";".join(archs)
             buildcmd += [
-                "IPHONEOS_DEPLOYMENT_TARGET=6.0",
+                "IPHONEOS_DEPLOYMENT_TARGET=9.0",
                 "ARCHS=%s" % arch,
             ]
 
@@ -285,6 +285,6 @@ if __name__ == "__main__":
         ] if os.environ.get('BUILD_PRECOMMIT', None) else
         [
             (["armv7", "armv7s", "arm64"], "iPhoneOS"),
-            (["i386", "x86_64"], "iPhoneSimulator"),
+            (["i386", "x86_64", "arm64"], "iPhoneSimulator"),
         ])
     b.build(args.out)
